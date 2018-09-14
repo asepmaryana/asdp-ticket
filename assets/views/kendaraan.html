@@ -1,0 +1,65 @@
+<div class="row small-spacing">
+	<div class="col-md-12">
+		<div class="box-content">
+			<div class="row">
+				<div class="col-sm-12">
+					<form name="form" class="form-inline" role="form">
+						<label class="control-label"> Tanggal : </label>
+						<input type="text" class="form-control" ng-model="crit.tanggal" id="tanggal" required/>
+						<label class="control-label"> Status : </label>
+						<select class="form-control select2" ng-model="crit.status">
+							<option value="semua">- Semua -</option>
+							<option value="sudah">Sudah Masuk Kapal</option>
+							<option value="belum">Belum Masuk Kapal</option>
+						</select>
+						<button class="btn btn-primary" ng-click="view(crit)" ng-disabled="form.$invalid"><i class="fa fa-refresh"></i> Tampilkan</button>
+					</form>					
+				</div>
+			</div>
+			
+			<div class="row" style="padding-top: 10px">
+				<div class="col-sm-12">
+					<div class="alert alert-info" ng-show="mode == ''">Pilih tanggal dan status !</div>
+					<div class="alert alert-info" ng-show="rows.length == 0 && mode != ''">Data kendaraan belum ada !</div>
+					<table datatable="ng" class="table table-striped" ng-if="rows.length > 0">
+						<thead>
+							<tr>
+								<th>No.</th>
+								<th>Kode Boarding</th>
+								<th>Golongan</th>
+								<th>Nama Pengemudi</th>
+								<th>Jenis Kelamin</th>
+								<th>Usia</th>
+								<th>Alamat</th>
+								<th>No Polisi</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="r in rows">
+								<td>{{$index + 1}}</td>
+								<td>{{r.kode_boarding}}</td>
+								<td>{{r.golongan}}</td>
+								<td>{{r.nama}}</td>
+								<td>{{r.jenis_kelamin}}</td>
+								<td>{{r.usia}}</td>
+								<td>{{r.alamat}}</td>
+								<td><button type="button" class="btn btn-xs btn-warning" ng-click="open(r, 'lg')">{{r.no_polisi}}</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	var datePickConfig	= {
+		autoclose: true,
+		todayHighlight: true,
+		format: 'yyyy-mm-dd'
+	};
+	jQuery('#tanggal').datepicker(datePickConfig);	
+});
+</script>

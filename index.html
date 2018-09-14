@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<meta name="description" content=""/>
+	<meta name="author" content=""/>
+
+	<title>ASDP - Ticket</title>
+
+	<!-- Main Styles -->
+	<link rel="stylesheet" href="assets/styles/style.css"/>
+
+	<!-- mCustomScrollbar -->
+	<link rel="stylesheet" href="assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css"/>
+
+	<!-- Waves Effect -->
+	<link rel="stylesheet" href="assets/plugin/waves/waves.min.css"/>
+
+	<!-- Sweet Alert -->
+	<link rel="stylesheet" href="assets/plugin/sweet-alert/sweetalert.css"/>
+	
+	<!-- Color Picker -->
+	<link rel="stylesheet" href="assets/color-switcher/color-switcher.min.css"/>
+	<link rel="stylesheet" href="assets/plugin/datepicker/css/bootstrap-datepicker.min.css"/>
+	<link rel="stylesheet" href="assets/plugin/timepicker/bootstrap-timepicker.min.css"/>
+	<link rel="stylesheet" href="assets/plugin/datatables/media/css/dataTables.bootstrap.min.css"/>
+	<link rel="stylesheet" href="assets/plugin/datatables/extensions/Responsive/css/responsive.bootstrap.min.css"/>
+	<link rel="stylesheet" href="assets/lib/angular-datatables/css/angular-datatables.min.css"/>
+	<link rel="stylesheet" href="assets/styles/color/yellow.min.css" id="custom-color-themes"/>
+	<link rel="stylesheet" href="assets/styles/spinners.css"/>
+	<link rel="stylesheet" href="assets/styles/custom.css"/>
+</head>
+
+<body ng-app="app" id="body">
+	<div class="preloader">
+		<svg class="circular" viewBox="25 25 50 50">
+			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+		</svg>
+	</div>
+	<div ui-view></div>
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="assets/script/html5shiv.min.js"></script>
+		<script src="assets/script/respond.min.js"></script>
+	<![endif]-->
+	<!-- 
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="assets/scripts/jquery.min.js"></script>
+	<script src="assets/scripts/modernizr.min.js"></script>
+	<script src="assets/plugin/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="assets/plugin/sweet-alert/sweetalert.min.js"></script>
+	<script src="assets/plugin/waves/waves.min.js"></script>
+	<script src="assets/plugin/fullscreen/jquery.fullscreen-min.js"></script>
+	<script src="assets/plugin/datepicker/js/bootstrap-datepicker.min.js"></script>
+	<script src="assets/plugin/timepicker/bootstrap-timepicker.min.js"></script>
+
+	<!-- Data Tables -->
+	<script src="assets/plugin/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="assets/plugin/datatables/media/js/dataTables.bootstrap.min.js"></script>
+	<script src="assets/plugin/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+	<script src="assets/plugin/datatables/extensions/Responsive/js/responsive.bootstrap.min.js"></script>
+	
+	<script src="assets/scripts/main.min.js"></script>
+	<script src="assets/color-switcher/color-switcher.min.js"></script>
+	
+	<script src="assets/lib/moment/moment.js"></script>
+	<script src="assets/lib/moment/locale/id.js"></script>
+	
+	<!-- angular -->
+	<script src="assets/lib/angular/angular.js"></script>
+	<script src="assets/lib/ui-router/angular-ui-router.js"></script>	
+	<script src="assets/lib/angular-animate/angular-animate.js"></script>
+	<script src="assets/lib/angular-resource/angular-resource.min.js"></script>	
+	<script src="assets/lib/angular-cookies/angular-cookies.min.js"></script>
+	<script src="assets/lib/angular-sanitize/angular-sanitize.min.js"></script>
+	<script src="assets/lib/angular-bootstrap/ui-bootstrap.min.js"></script>
+	<script src="assets/lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+	<script src="assets/lib/angular-moment/angular-moment.min.js"></script>
+	<script src="assets/lib/angular-ui-select2/src/select2.js"></script>
+	<script src="assets/lib/angular-datatables/angular-datatables.min.js"></script>
+	<script src="assets/lib/underscore/underscore-min.js"></script>
+	<script src="assets/lib/bootbox/bootbox.js"></script>    
+	<script src="assets/lib/ocLazyLoad.min.js"></script>		
+		
+	<!-- application -->
+	<script type="text/javascript">
+		if (!window.location.origin) window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
+		var BASE_URL= window.location.origin+window.location.pathname;
+		if(BASE_URL.substr(-1) == '/') BASE_URL = BASE_URL.substring(0, BASE_URL.length-1);
+		var userInfo = null;
+	</script>
+	<script src="assets/app/app.js"></script>
+	<script src="assets/app/app.constant.js"></script>
+	<script src="assets/app/app.directive.js"></script>
+	<script src="assets/app/app.controller.js"></script>
+</body>
+</html>

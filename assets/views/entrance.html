@@ -1,0 +1,101 @@
+<div class="row small-spacing">
+	<div class="col-md-12">
+		<div class="box-content">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-1" class="btn btn-default"><i class="fa fa-user"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Nama Penumpang / Pengemudi" ng-model="data.nama"/>
+					</div>
+					<!-- /.input-group -->
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-2" class="btn btn-default"><i class="fa fa-credit-card"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Jenis ID" ng-model="data.identitas"/>
+					</div>
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-2" class="btn btn-default"><i class="fa fa-male"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Jenis Kelamin" ng-model="data.jenis_kelamin"/>
+					</div>
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-2" class="btn btn-default"><i class="fa fa-birthday-cake"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Usia" ng-model="data.usia"/>
+					</div>
+					<!-- /.input-group -->
+					<div class="input-group">
+						<div class="input-group-btn"><label for="ig-3" class="btn btn-default"><i class="fa fa-map-marker"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Alamat Asal" ng-model="data.alamat"/>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-1" class="btn btn-default"><i class="fa fa-qrcode"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Kode Boarding" ng-model="data.kode_boarding"/>
+					</div>
+					<!-- /.input-group -->
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-2" class="btn btn-default"><i class="fa fa-anchor"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Rute Perjalanan" ng-model="data.rute"/>
+					</div>
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-2" class="btn btn-default"><i class="fa fa-car"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Jenis Pelayanan" ng-model="data.layanan"/>
+					</div>
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-2" class="btn btn-default"><i class="fa fa-th-large"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Kategori / Golongan" ng-model="data.golongan"/>
+					</div>
+					<!-- /.input-group -->
+					<div class="input-group">
+						<div class="input-group-btn"><label for="ig-3" class="btn btn-default"><i class="fa fa-credit-card-alt"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Nomor Polisi" ng-model="data.no_polisi"/>
+					</div>
+				</div>
+				<div class="col-sm-4" style="background-color: #eee; padding: 5px">
+					<img alt="" src="assets/images/bgid.png"/>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row small-spacing">
+	<div class="col-md-12">
+		<div class="box-content">
+			<div class="row">
+				<div class="col-sm-4 text-center" style="padding: 10">
+					<p ng-show="data.tarif != null">Harga Tiket :</p>
+					<h3>Rp. {{data.tarif|number}}</h3>
+				</div>
+				<div class="col-sm-4 text-center">
+					<img src="assets/images/ditemukan.png" ng-show="data.success == true"/> 
+					<h3 ng-show="data.success == true">Data Ditemukan</h3>
+					<span class="text-warning" ng-show="data.masuk_kapal != null"> Sudah Masuk Kapal </span>
+					
+					<img src="assets/images/tidak.png" ng-show="data.success == false"/> 
+					<h3 ng-show="data.success == false">Data Tidak Ada</h3>
+					
+				</div>
+				<div class="col-sm-4 text-center">
+					<input type="text" class="form-control" placeholder="Kode Boarding" ng-model="kode" ng-keypress="enterPressed($event)" autofocus="autofocus"/> <br/>
+					<button class="btn btn-sm btn-primary" type="button" ng-click="clear();">
+						<i class="fa fa-remove"></i> Clear
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function () {
+	$("#body").removeClass("bglogin");
+});
+</script>

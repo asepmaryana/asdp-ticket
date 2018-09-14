@@ -1,0 +1,13 @@
+logs
+/.metadata
+/Servers
+.settings
+.project
+.classpath
+.buildpath
+.metadata
+.json
+Servers
+RemoteSystemsTempFiles
+bin
+node_modules

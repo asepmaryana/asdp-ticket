@@ -1,0 +1,9 @@
+<IfModule mod_env.c>
+    SetEnv CI_ENV development
+</IfModule>
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteBase /asdp/api
+RewriteRule ^(.*)$ index.php/$1 [L]

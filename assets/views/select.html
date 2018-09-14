@@ -1,0 +1,36 @@
+<div class="front">
+	<h4 class="front-title">Silahkan pilih nama kapal dan dermaga</h4>
+	<form class="front-content form-horizontal" role="form" name="formDepan">
+		<div class="form-group">
+			<div class="col-sm-2 text-right">
+				<img src="assets/images/kapal.png" style="height: 45px; opacity:1.0"/>
+			</div>
+			<div class="col-sm-3">
+				<select class="form-control" ng-model="data.id_kapal" required>
+					<option value="">- Pilih Kapal -</option>
+					<option ng-repeat="p in kapals" value="{{p.id_kapal}}">{{p.nama_kapal}}</option>
+				</select>
+			</div>
+			<div class="col-sm-2 text-right">
+				<img src="assets/images/jangkar.png" style="height: 45px"/>
+			</div>
+			<div class="col-sm-3">
+				<select class="form-control" ng-model="data.id_dermaga" required>
+					<option value="">- Pilih Dermaga -</option>
+					<option ng-repeat="p in dermagas" value="{{p.id_dermaga}}">{{p.dermaga}}</option>
+				</select>
+			</div>
+			<div class="col-sm-2">
+			&nbsp;
+			</div>
+		</div>
+	</form>
+	<div class="frm-single">
+		<center><button type="button" class="btn btn-warning" ng-click="go(data)" style="width: 100px" ng-disabled="formDepan.$invalid"> OK </button></center>
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function () {
+	$("#body").addClass("bglogin");
+});
+</script>

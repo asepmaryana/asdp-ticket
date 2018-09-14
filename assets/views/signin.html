@@ -1,0 +1,29 @@
+	<form action="#" class="frm-single">
+		<div class="inside">
+			<div class="title"><strong>Log-In</strong></div>
+			<div class="frm-input"><input type="text" placeholder="Username" class="frm-inp" ng-model="data.username" ng-keypress="enterPressed($event)"/><i class="fa fa-user frm-ico"></i></div>
+			<!-- /.frm-input -->
+			<div class="frm-input"><input type="password" placeholder="Password" class="frm-inp" ng-model="data.password" ng-keypress="enterPressed($event)"/><i class="fa fa-lock frm-ico"></i></div>
+			<!-- /.frm-input -->
+			<div class="clearfix margin-bottom-20">
+				<div class="pull-left">
+					<div class="checkbox primary"><input type="checkbox" id="rememberme" value="1" ng-model="data.remember"/><label for="rememberme">Remember me</label></div>
+					<!-- /.checkbox -->
+				</div>
+				<!-- /.pull-left -->
+				<div class="pull-right"><a href="#/welcome/reset" class="a-link"><i class="fa fa-unlock-alt"></i>Lupa password ?</a></div>
+				<!-- /.pull-right -->
+			</div>
+			<!-- /.clearfix -->
+			<button type="button" class="frm-submit" ng-click="login(data)">Login<i class="fa fa-arrow-circle-right"></i></button>
+			<div class="frm-footer">PT. LEN Industri (Persero) © 2018</div>
+			<!-- /.footer -->
+		</div>
+		<!-- .inside -->
+	</form>
+	<!-- /.frm-single -->
+	<script type="text/javascript">
+	$(document).ready(function () {
+		$("#body").addClass("bglogin");
+	});
+	</script>

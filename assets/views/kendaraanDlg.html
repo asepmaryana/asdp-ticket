@@ -1,0 +1,43 @@
+<div class="modal-content">
+	<button type="button" class="close" ng-click="cancel();"><i class="ti-close"></i> </button>
+	<div class="modal-header">
+		<h3 class="modal-title" ng-model="title">{{title}}</h3>
+	</div>
+	<div class="modal-body">
+		<div class="row">
+			<div class="col-sm-4"><span class=""><strong>Tanggal :</strong> {{tanggal}}</span></div>
+			<div class="col-sm-4"><span class=""><strong>Nomor Polisi :</strong> {{data.no_polisi}}</span></div>
+			<div class="col-sm-4"><span class=""><strong>Golongan :</strong> {{data.golongan}}</span></div>
+		</div>
+		<div class="row">
+			<div class="alert alert-info" ng-show="rows.length == 0">Data penumpang belum ada !</div>
+			<table class="table table-striped" ng-show="rows.length > 0">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Nama Penumpang</th>
+						<th>Jenis Kelamin</th>
+						<th>Usia</th>
+						<th>Alamat</th>
+						<th>No Passport</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="r in rows">
+						<td>{{$index + 1}}</td>
+						<td>{{r.nama}}</td>
+						<td>{{r.jenis_kelamin == 'L' ? 'Laki-Laki':'Perempuan'}}</td>
+						<td>{{r.usia}}</td>
+						<td>{{r.alamat}}</td>						
+						<td>{{r.jenis_identitas == 'Paspor' ? r.no_identitas:'-'}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<div class="text-right">
+			<button class="btn btn-sm" type="button" ng-click="cancel()"><i class="fa fa-close"></i> Tutup</button>  
+		</div>
+	</div>
+</div>

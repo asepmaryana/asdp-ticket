@@ -1,0 +1,98 @@
+<div class="main-menu">
+	<header class="header">
+		<a href="#/app/entrance/{{idKapal}}/{{idDermaga}}" class="logo">ASDP</a>
+		<button type="button" class="button-close fa fa-times js__menu_close"></button>
+		<div class="user">
+			<a href="#" class="avatar"><img src="assets/images/user.png" alt=""/><span class="status online"></span></a>
+			<h5 class="name"><a>{{user.nama_lengkap}}</a></h5>
+			<h5 class="position">{{user.deskripsi}}</h5>
+			<!-- /.name -->
+			<div class="control-wrap js__drop_down">
+				<i class="fa fa-caret-down js__drop_down_button"></i>
+				<div class="control-list">
+					<!-- 
+					<div class="control-item"><a href="profile.html"><i class="fa fa-user"></i> Profile</a></div>
+					<div class="control-item"><a href="#"><i class="fa fa-gear"></i> Settings</a></div>
+					 -->
+					<div class="control-item"><a ng-click="logout()"><i class="fa fa-sign-out"></i> Log out</a></div>
+				</div>
+				<!-- /.control-list -->
+			</div>
+			<!-- /.control-wrap -->
+		</div>
+		<!-- /.user -->
+	</header>
+	<!-- /.header -->
+	<div class="content">
+		<div class="navigation">
+			<ul class="menu js__accordion">
+				<li>
+					<a class="waves-effect" href="#/app/entrance/{{idKapal}}/{{idDermaga}}"><i class="menu-icon fa fa-sign-in"></i><span>Entrance</span></a>
+				</li>
+				<li>
+					<a class="waves-effect parent-item js__control"><i class="menu-icon fa fa-flag"></i><span>Laporan</span><span class="menu-arrow fa fa-angle-down"></span></a>
+					<ul class="sub-menu js__content">
+						<li><a href="#/app/penumpang/{{idKapal}}/{{idDermaga}}">Penumpang</a></li>
+						<li><a href="#/app/kendaraan/{{idKapal}}/{{idDermaga}}">Kendaraan</a></li>
+						<li><a href="#/app/rekap/{{idKapal}}/{{idDermaga}}">Rekapitulasi</a></li>
+					</ul>
+					<!-- /.sub-menu js__content -->
+				</li>
+			</ul>
+			<!-- /.menu js__accordion -->
+		</div>
+		<!-- /.navigation -->
+	</div>
+	<!-- /.content -->
+</div>
+<!-- /.main-menu -->
+
+<div class="fixed-navbar">
+	<div class="pull-left">
+		<button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<h1 class="page-title">{{judul}}</h1>
+		</div>
+		<div class="col-md-2" style="padding-top: 10px">
+			<strong>{{dermaga.dermaga}}</strong> <br/> {{tanggal}}
+		</div>
+		<div class="col-md-2" style="padding-top: 10px">
+			<strong>{{kapal.nama_kapal}}</strong> <br/> {{jam}}
+		</div>
+		<div class="col-md-2">
+			<div class="pull-right">
+				<!--
+				<div class="ico-item">
+					<a href="#" class="ico-item fa fa-search js__toggle_open" data-target="#searchform-header"></a>
+					<form action="#" id="searchform-header" class="searchform js__toggle"><input type="search" placeholder="Search..." class="input-search"><button class="fa fa-search button-search" type="submit"></button></form>
+				</div>
+				-->
+				<!-- /.ico-item -->
+				<div class="ico-item fa fa-arrows-alt js__full_screen"></div>
+				<!-- /.ico-item fa fa-fa-arrows-alt -->
+				<a ng-click="logout()" class="ico-item fa fa-power-off"></a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /.fixed-navbar -->
+
+<div id="wrapper">
+	<div class="main-content">
+		<div ui-view="page"></div>
+		<footer class="footer">
+			<ul class="list-inline">
+				<li>2018 © PT. LEN Industri (Persero).</li>
+				<!--
+				<li><a href="#">Privacy</a></li>
+				<li><a href="#">Terms</a></li>
+				<li><a href="#">Help</a></li>
+				-->
+			</ul>
+		</footer>
+	</div>
+	<!-- /.main-content -->
+</div><!--/#wrapper -->
+<script src="assets/scripts/main.js"></script>

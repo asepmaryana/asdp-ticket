@@ -1,0 +1,36 @@
+.bglogin {
+	background: url(../images/BG1.png) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+.bgapp {
+	background: none;
+}
+.frm-single .frm-footer {
+	text-align: center;
+}
+.front {
+	margin: auto;
+    width: 80%;
+	padding-top:80px;
+}
+
+.front .front-title {
+	text-align:center;
+	color:#fff;
+	margin-bottom: 50px;
+}
+.front .front-content {
+	background-color: #000;
+	opacity: 0.5;
+	padding: 30px;
+}
+.front .front-content .form-group {
+	margin-bottom: 0px;	
+}
+
+.front .front-content .form-control {
+	
+}

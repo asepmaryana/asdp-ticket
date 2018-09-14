@@ -1,0 +1,13 @@
+	<form action="#" class="frm-single">
+		<div class="inside">
+			<div class="title"><strong>Reset</strong></div>
+			<p class="text-center">Masukan alamat email anda, kami akan mengirimkan intruksi reset password kedalam email anda.</p>
+			<div class="frm-input"><input type="email" placeholder="Enter Email" class="frm-inp" ng-model="data.username" ng-keypress="enterPressed($event)"/><i class="fa fa-envelope frm-ico"></i></div>
+			<!-- /.frm-input -->
+			<button type="button" class="frm-submit" ng-click="reset(data)">Send Email<i class="fa fa-arrow-circle-right"></i></button>
+			<a href="#/welcome/signin" class="a-link"><i class="fa fa-sign-in"></i>Sudah ada akun ? Login.</a>
+			<div class="frm-footer">PT. LEN Industri (Persero) © 2018</div>
+			<!-- /.footer -->
+		</div>
+		<!-- .inside -->
+	</form>
