@@ -19,5 +19,5 @@ function encryptData($key, $plainText)
     echo base64_encode($encData);
 }
 
-encryptData('bridgethenation2018', 'tollgate1');
+encryptData('bridgethenation2018', 'dashboard1');
 ?>

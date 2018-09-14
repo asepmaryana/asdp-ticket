@@ -22,12 +22,14 @@ class Auth extends REST_Controller
 	public function login_post() {
 		$username = $this->post('username');
 		$password = enkripsi($this->post('password'));
+		#$password = $this->post('password');
 		
 		if($username == '') {
             $postdata   = file_get_contents("php://input");
             $request    = json_decode($postdata);
             $username   = $request->username;
             $password   = enkripsi($request->password);
+            #$password   = $request->password;
         }
 		
         $response = ['success'=>false, 'message' => 'Username atau password anda salah !'];

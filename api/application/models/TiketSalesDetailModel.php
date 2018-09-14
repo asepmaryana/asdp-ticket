@@ -34,8 +34,8 @@ class TiketSalesDetailModel extends CI_Model
 	    $this->db->join('ref_golongan gol', 'tsd.id_golongan=gol.id_golongan', 'left');
 	    
 	    if(isset($crit['id_layanan']) && $crit['id_layanan'] != '') $this->db->where('jl.id_jenis_layanan', $crit['id_layanan']);
-	    #if(isset($crit['id_kapal']) && $crit['id_kapal'] != '') $this->db->where('tsd.id_kapal', $crit['id_kapal']);
-	    #if(isset($crit['id_dermaga']) && $crit['id_dermaga'] != '') $this->db->where('tsd.id_dermaga', $crit['id_dermaga']);
+	    if(isset($crit['id_kapal']) && $crit['id_kapal'] != '') $this->db->where('tsd.id_kapal', $crit['id_kapal']);
+	    if(isset($crit['id_dermaga']) && $crit['id_dermaga'] != '') $this->db->where('tsd.id_dermaga', $crit['id_dermaga']);
 	    if(isset($crit['tanggal']) && $crit['tanggal'] != '') $this->db->where('ts.tgl_berangkat', $crit['tanggal']);
 	    if(isset($crit['status']) && $crit['status'] == 'sudah') {
 	        $this->db->where('tsd.masuk_kapal is not null');

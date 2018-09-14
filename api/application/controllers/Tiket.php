@@ -132,6 +132,7 @@ class Tiket extends REST_Controller
 	        $html = $this->load->view('template', $rekap, true);
 	        $stylesheet = file_get_contents('../assets/plugin/bootstrap/css/bootstrap.css');
 	        $mpdf->WriteHTML($stylesheet,1);
+	        $mpdf->SetHTMLHeader('<img src="../assets/images/header.png" width="100%" border="0"/>');
 	        $mpdf->WriteHTML($html);
 	        $mpdf->Output('Rekap.'.date('YmdHis').'.pdf', 'D');
 	    }
