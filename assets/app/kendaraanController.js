@@ -20,7 +20,7 @@ angular.module('app.controller', ['ui.bootstrap','datatables'])
 	$scope.rows		= [];
 	$scope.mode		= '';
 	$scope.buildUrl	= function(crit) {
-		console.log(BASE_URL+'/api/tiket/list/'+id_layanan+'/'+id_kapal+'/'+id_dermaga+'/'+crit.tanggal+'/'+crit.status);
+		console.log(BASE_URL+'/api/tikets/list/'+id_layanan+'/'+id_kapal+'/'+id_dermaga+'/'+crit.tanggal+'/'+crit.status);
 		return BASE_URL+'/api/tiket/lists/'+id_layanan+'/'+id_kapal+'/'+id_dermaga+'/'+crit.tanggal+'/'+crit.status;
 	}
 	$scope.view		= function(crit) {

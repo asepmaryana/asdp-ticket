@@ -12,7 +12,9 @@
 							<option value="sudah">Sudah Masuk Kapal</option>
 							<option value="belum">Belum Masuk Kapal</option>
 						</select>
-						<button class="btn btn-primary" ng-click="view(crit)" ng-disabled="form.$invalid"><i class="fa fa-refresh"></i> Tampilkan</button>
+						<button class="btn btn-primary" ng-click="view(crit, '')" ng-disabled="form.$invalid"><i class="fa fa-refresh"></i> Tampilkan</button>
+						<button class="btn btn-primary" ng-click="view(crit, 'xls')" ng-disabled="form.$invalid"><i class="fa fa-file-excel-o"></i> Excel</button>
+						<button class="btn btn-primary" ng-click="view(crit, 'pdf')" ng-disabled="form.$invalid"><i class="fa fa-file-pdf-o"></i> Pdf</button>
 					</form>					
 				</div>
 			</div>

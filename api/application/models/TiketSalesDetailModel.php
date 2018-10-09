@@ -33,15 +33,14 @@ class TiketSalesDetailModel extends CI_Model
 	    $this->db->join('ref_jenis_layanan jl', 'ts.id_jenis_layanan=jl.id_jenis_layanan', 'left');
 	    $this->db->join('ref_golongan gol', 'tsd.id_golongan=gol.id_golongan', 'left');
 	    
-	    if(isset($crit['id_layanan']) && $crit['id_layanan'] != '') $this->db->where('jl.id_jenis_layanan', $crit['id_layanan']);
-	    if(isset($crit['id_kapal']) && $crit['id_kapal'] != '') $this->db->where('tsd.id_kapal', $crit['id_kapal']);
-	    if(isset($crit['id_dermaga']) && $crit['id_dermaga'] != '') $this->db->where('tsd.id_dermaga', $crit['id_dermaga']);
+	    if(isset($crit['id_layanan']) && $crit['id_layanan'] != '') $this->db->where('jl.id_jenis_layanan', $crit['id_layanan']);	    
 	    if(isset($crit['tanggal']) && $crit['tanggal'] != '') $this->db->where('ts.tgl_berangkat', $crit['tanggal']);
 	    if(isset($crit['status']) && $crit['status'] == 'sudah') {
 	        $this->db->where('tsd.masuk_kapal is not null');
-	        $this->db->where('tsd.id_kapal', $crit['id_kapal']);
+	        if(isset($crit['id_kapal']) && $crit['id_kapal'] != '') $this->db->where('tsd.id_kapal', $crit['id_kapal']);
+	        if(isset($crit['id_dermaga']) && $crit['id_dermaga'] != '') $this->db->where('tsd.id_dermaga', $crit['id_dermaga']);
 	    }
-	    if(isset($crit['status']) && $crit['status'] == 'belum') $this->db->where('tsd.masuk_kapal is null');
+	    if(isset($crit['status']) && $crit['status'] == 'belum') $this->db->where('tsd.masuk_kapal is null and tsd.tgl_checkin is not null');
 		if($sort != '' && $order != '') $this->db->order_by($sort, $order);
         return $this->db->get($this->table.' tsd');
 	}
@@ -58,9 +57,9 @@ class TiketSalesDetailModel extends CI_Model
 	    
 	    if(isset($crit['id_golongan']) && $crit['id_golongan'] != '') $this->db->where('tsd.id_golongan', $crit['id_golongan']);
 	    if(isset($crit['id_layanan']) && $crit['id_layanan'] != '') $this->db->where('ts.id_jenis_layanan', $crit['id_layanan']);
-	    #if(isset($crit['id_kapal']) && $crit['id_kapal'] != '') $this->db->where('tsd.id_kapal', $crit['id_kapal']);
-	    #if(isset($crit['id_dermaga']) && $crit['id_dermaga'] != '') $this->db->where('tsd.id_dermaga', $crit['id_dermaga']);
-	    #if(isset($crit['tanggal']) && $crit['tanggal'] != '') $this->db->where('ts.tgl_berangkat', $crit['tanggal']);
+	    if(isset($crit['id_kapal']) && $crit['id_kapal'] != '') $this->db->where('tsd.id_kapal', $crit['id_kapal']);
+	    if(isset($crit['id_dermaga']) && $crit['id_dermaga'] != '') $this->db->where('tsd.id_dermaga', $crit['id_dermaga']);
+	    if(isset($crit['tanggal']) && $crit['tanggal'] != '') $this->db->where('ts.tgl_berangkat', $crit['tanggal']);
 	    #if(isset($crit['jam']) && $crit['jam'] != '') $this->db->where('ts.jam', $crit['jam'].':00');
 	    if(isset($crit['id_kelamin']) && $crit['id_kelamin'] != '') $this->db->where('tsd.id_jenis_kelamin', $crit['id_kelamin']);
 	    

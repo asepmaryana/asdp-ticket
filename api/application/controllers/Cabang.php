@@ -57,6 +57,6 @@ class Cabang extends REST_Controller
         $this->CabangModel->delete($id);
         $this->response([], REST_Controller::HTTP_OK);
     }
-       
+    
 }
 ?>

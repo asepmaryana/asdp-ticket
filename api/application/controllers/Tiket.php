@@ -32,6 +32,7 @@ class Tiket extends REST_Controller
 	    $id_dermaga    = $this->uri->segment(5);
 	    $tanggal       = $this->uri->segment(6);
 	    $status        = $this->uri->segment(7);
+	    $doc           = $this->uri->segment(8);
 	    
 	    if($id_layanan == '_') $id_layanan = '';
 	    if($id_kapal == '_') $id_kapal = '';
@@ -40,11 +41,71 @@ class Tiket extends REST_Controller
 	    if($status == '_') $status = '';
 	    
 	    $crit   = ['id_layanan'=>$id_layanan,'id_kapal'=>$id_kapal,'id_dermaga'=>$id_dermaga,'tanggal'=>$tanggal,'status'=>$status];
-	    $sort	= 'tsd.kode_boarding';
+	    $sort	= 'tsd.masuk_kapal';
 	    $order	= 'asc';
 
 	    $rows   = $this->TiketSalesDetailModel->get_list($crit, $sort, $order)->result();
-		$this->response($rows, REST_Controller::HTTP_OK);
+	    
+	    if ($doc == 'xls') {
+	        
+	        $kapal     = $this->KapalModel->get_by_id($id_kapal)->row();
+	        $dermaga   = $this->DermagaModel->get_by_id($id_dermaga)->row();
+	        if($status != 'semua') $status .=' MASUK KAPAL';
+	        
+	        require_once APPPATH.'/third_party/phpexcel/PHPExcel/IOFactory.php';
+	        $objReader = PHPExcel_IOFactory::createReader('Excel2007');
+	        $objPHPExcel = $objReader->load(APPPATH."/templates/penumpang.xlsx");
+	        
+	        $objPHPExcel->getActiveSheet()->setCellValue('C3', ': '.strtoupper($kapal->nama_kapal));
+	        $objPHPExcel->getActiveSheet()->setCellValue('C4', ': '.strtoupper($dermaga->dermaga));
+	        $objPHPExcel->getActiveSheet()->setCellValue('C5', ': '.tgl_rev($tanggal));
+	        $objPHPExcel->getActiveSheet()->setCellValue('C6', ': '.strtoupper($status));
+	        
+	        $objWorksheet  = $objPHPExcel->getActiveSheet();
+	        $start         = 10;
+	        $r=$start;
+	        $c=0;
+	        foreach ($rows as $row) {
+	            $c++;
+	            $objWorksheet->insertNewRowBefore($r, 1);
+	            
+	            $objWorksheet->setCellValue('A'.$r, $c);
+	            $objWorksheet->setCellValue('B'.$r, $row->kode_boarding);
+	            $objWorksheet->setCellValue('C'.$r, $row->nama);
+	            $objWorksheet->setCellValue('D'.$r, $row->jenis_kelamin);
+	            $objWorksheet->setCellValue('E'.$r, $row->usia);
+	            $objWorksheet->setCellValue('F'.$r, $row->alamat);
+	            $objWorksheet->setCellValueExplicit('G'.$r, ($row->id_jenis_identitas == '3') ? $row->no_identitas : '-', PHPExcel_Cell_DataType::TYPE_STRING);
+	            
+	            $r++;
+	        }
+	        $stop  = $start+count($rows)-1;
+	        if(count($rows) > 0) $objWorksheet->removeRow($start-1);
+	        download_excel($objPHPExcel, 'Rekap-Penumpang');
+	    }
+	    elseif ($doc == 'pdf') {
+	        $kapal     = $this->KapalModel->get_by_id($id_kapal)->row();
+	        $dermaga   = $this->DermagaModel->get_by_id($id_dermaga)->row();
+	        if($status != 'semua') $status .=' MASUK KAPAL';
+	        
+	        $data  = array();
+	        $data['kapal']     = strtoupper($kapal->nama_kapal);
+	        $data['dermaga']   = strtoupper($dermaga->dermaga);
+	        $data['tanggal']   = tgl_rev($tanggal);
+	        $data['status']    = strtoupper($status);
+	        $data['rows']      = $rows;
+	        
+	        $this->load->library('M_pdf');
+	        $mpdf = $this->m_pdf->load(['mode' => 'utf-8', 'format' => 'A4-L']);
+	        $html = $this->load->view('penumpang', $data, true);
+	        
+	        $stylesheet = file_get_contents('../assets/plugin/bootstrap/css/bootstrap.css');
+	        $mpdf->WriteHTML($stylesheet,1);
+	        $mpdf->SetHTMLHeader('<img src="../assets/images/header.png" width="100%" border="0"/>');
+	        $mpdf->WriteHTML($html);
+	        $mpdf->Output('Rekap-Penumpang.pdf', 'D');
+	    }
+	    else $this->response($rows, REST_Controller::HTTP_OK);
 	}
 	
 	public function rekap_get() {

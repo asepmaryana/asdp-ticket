@@ -13,10 +13,12 @@ angular.module('app.controller', ['ui.bootstrap'])
 	
 	$scope.data		= null;
 	$scope.kode		= '';
+	$scope.boarding	= '';
 	$rootScope.judul= 'Entrance Checking';
 	
-	$scope.lookup			= function(kode) {
+	$scope.lookup			= function(kode) {		
 		console.log(kode);
+		$scope.boarding	= kode;
 		$http.get(BASE_URL+'/api/tiket/cek/'+kode)
 		.success(function(res){
 			$scope.data = res.data;

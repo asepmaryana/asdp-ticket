@@ -1,0 +1,40 @@
+Asumsi :
+
+1. Proses refund max 1 hari sebelum keberangkatan
+2. Potongan biaya refund sebesar 25% dari nominal transaksi
+3. 
+
+Proses :
+1. Searching tiket berdasarkan kode booking
+2. Data penjualan tiket harus dapat ter-update (berkurang atau bertambah)
+3. Update status penjualan tiket
+4. Rekap tiket refund
+
+Database:
+1. tabel ref_status_pesan
+	berisi status pemesanan tiket, saat ini terdiri dari 3 :
+	1) dipesan
+	2) sukses bayar
+	3) gagal bayar
+	
+	jadi harus ditambah 1 lagi:
+	4) refund
+
+2. nambah tabel baru : ref_proses_refund
+	field:
+	- id_proses_refund
+	- proses_refund
+	
+	asumsi data status refund:
+	1 Diajukan
+	2 Diproses
+	
+3. nambah tabel baru : trx_tiket_sales_refund	
+	field:
+	- id_trx_tiket_sales_refund
+	- id_trx_tiket_sales
+	- id_status_pesan
+	- id_pengguna
+	- tgl_pengajuan
+	- 
+	

@@ -76,16 +76,16 @@
 					<h3>Rp. {{data.tarif|number}}</h3>
 				</div>
 				<div class="col-sm-4 text-center">
+					<h3>{{boarding}}</h3>
 					<img src="assets/images/ditemukan.png" ng-show="data.success == true"/> 
 					<h3 ng-show="data.success == true">Data Ditemukan</h3>
 					<span class="text-warning" ng-show="data.masuk_kapal != null"> Sudah Masuk Kapal </span>
 					
 					<img src="assets/images/tidak.png" ng-show="data.success == false"/> 
-					<h3 ng-show="data.success == false">Data Tidak Ada</h3>
-					
+					<h3 ng-show="data.success == false">Data Tidak Ada</h3>					
 				</div>
 				<div class="col-sm-4 text-center">
-					<input type="text" class="form-control" placeholder="Kode Boarding" ng-model="kode" ng-keypress="enterPressed($event)" autofocus="autofocus"/> <br/>
+					<input id="btnkode" type="text" class="form-control" placeholder="Kode Boarding" ng-model="kode" ng-keypress="enterPressed($event)"/> <br/>
 					<button class="btn btn-sm btn-primary" type="button" ng-click="clear();">
 						<i class="fa fa-remove"></i> Clear
 					</button>
@@ -97,5 +97,6 @@
 <script type="text/javascript">
 $(document).ready(function () {
 	$("#body").removeClass("bglogin");
+	$("#btnkode").focus();
 });
 </script>
