@@ -216,7 +216,10 @@ $config['auth_override_class_method_http']['tiket']['rekap']['get'] = 'none';
 $config['auth_override_class_method_http']['dermaga']['info']['get'] = 'none';
 $config['auth_override_class_method_http']['kapal']['info']['get'] = 'none';
 $config['auth_override_class_method_http']['kendaraan']['penumpang']['post'] = 'none';
+$config['auth_override_class_method_http']['tiketRefund']['lists']['get'] = 'none';
+$config['auth_override_class_method_http']['tiketRefund']['find']['get'] = 'none';
 $config['auth_override_class_method_http']['pdf']['test']['get'] = 'none';
+
 /*
 |--------------------------------------------------------------------------
 | REST Login Usernames

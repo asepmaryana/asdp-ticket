@@ -1,0 +1,128 @@
+<link rel="stylesheet" media="print" href="assets/styles/print.css"/>
+<script src="assets/app/jquery.PrintArea.js" type="text/JavaScript"></script>
+<div class="row small-spacing">
+	<div class="col-md-12">
+		<div class="box-content">
+			<div class="row">
+				<div class="col-sm-12">
+					<form name="form" class="form-inline" role="form">
+						<label class="control-label"> Kode Booking : </label>
+						<input type="text" class="form-control" ng-model="kode" ng-keypress="enterPressed($event)"/>
+						<button class="btn btn-primary" type="button" ng-click="lookup(kode)"><i class="fa fa-search"></i> Search</button>
+						<button class="btn btn-primary" type="button" ng-click="clear();"><i class="fa fa-remove"></i> Clear</button>
+					</form>					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row small-spacing">
+	<div class="col-md-12">
+		<div class="box-content">
+			<h4 class="box-title">Info Tiket</h4>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-1" class="btn btn-default"><i class="fa fa-calendar"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Tanggal Booking" ng-model="data.tgl_penjualan"/>
+					</div>
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-1" class="btn btn-default"><i class="fa fa-calendar"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Tanggal Berangkat" ng-model="data.tgl_berangkat"/>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-3" class="btn btn-default"><i class="fa fa-map-marker"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Rute" ng-model="data.rute"/>
+					</div>
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-2" class="btn btn-default"><i class="fa fa-car"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Jenis Pelayanan" ng-model="data.layanan"/>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-2" class="btn btn-default"><i class="fa fa-lightbulb-o"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Status Pesan" ng-model="data.status_pesan"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row small-spacing">
+	<div class="col-md-12">
+		<div class="box-content">
+			<h4 class="box-title">Info Pemohon</h4>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-1" class="btn btn-default"><i class="fa fa-calendar"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Tanggal Permohonan" ng-model="data.tgl_pengajuan"/>
+					</div>
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-2" class="btn btn-default"><i class="fa fa-user"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Nama Pemohon" ng-model="data.nama_pemohon"/>
+					</div>
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-3" class="btn btn-default"><i class="fa fa-credit-card"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Nomor Identitas" ng-model="data.nomor_identitas"/>
+					</div>
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-4" class="btn btn-default"><i class="fa fa-phone"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Nomor Telp" ng-model="data.nomor_telp"/>
+					</div>
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-5" class="btn btn-default"><i class="fa fa-info"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Status Refund" ng-model="data.status_refund"/>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-6" class="btn btn-default"><i class="fa fa-bank"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Rekening" ng-model="data.rekening"/>
+					</div>
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-7" class="btn btn-default"><i class="fa fa-user"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Atas Nama" ng-model="data.atas_nama"/>
+					</div>
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-8" class="btn btn-default"><i class="fa fa-money"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Total Harga" ng-model="data.total"/>
+					</div>
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-9" class="btn btn-default"><i class="fa fa-money"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Total Refund" ng-model="data.refund"/>
+					</div>
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-9" class="btn btn-default"><i class="fa fa-question"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Alasan Pembatalan" ng-model="data.alasan"/>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<button class="btn btn-sm btn-danger" type="button" ng-click="save(data);" ng-disabled="data.status_refund == 'DIPROSES'">
+						<i class="fa fa-check"></i> Proses
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

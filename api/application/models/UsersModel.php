@@ -9,7 +9,7 @@ class UsersModel extends CI_Model
 	
 	public function login($username, $password)
 	{
-		$this->db->select('id_pengguna');
+		$this->db->select('id_pengguna,id_peran');
 		$this->db->from($this->table);
 		$this->db->where('nama_pengguna', $username);
 		$this->db->where('sandi', $password);

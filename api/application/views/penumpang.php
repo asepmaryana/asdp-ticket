@@ -1,4 +1,8 @@
-				<br/><br/><br/>
+				<div class="col-sm-12 margin-bottom-20">
+					<div class="text-center">
+						<img src="../assets/images/header.png" width="100%" border="0"/>
+					</div>
+				</div>
 				<div class="col-sm-12 margin-bottom-20">
 					<div class="text-center">
 						<h5>

@@ -20,10 +20,10 @@ Database:
 	jadi harus ditambah 1 lagi:
 	4) refund
 
-2. nambah tabel baru : ref_proses_refund
+2. nambah tabel baru : ref_status_refund
 	field:
-	- id_proses_refund
-	- proses_refund
+	- id_status_refund
+	- status_refund
 	
 	asumsi data status refund:
 	1 Diajukan
@@ -36,5 +36,9 @@ Database:
 	- id_status_pesan
 	- id_pengguna
 	- tgl_pengajuan
-	- 
+	- nama_pemohon
+	- id_jenis_identitas_pemohon
+	- nomor_identitas_pemohon
+	- telp_identitas_pemohon
+	
 	

@@ -1,6 +1,6 @@
 angular.module('app.controller', ['ui.bootstrap'])
-.controller('EntranceController', ['$rootScope','$scope','$http','$stateParams', function($rootScope,$scope,$http,$stateParams){
-	
+.controller('EntranceController', ['$rootScope','$scope','$http','$stateParams','$cookies','$state', function($rootScope,$scope,$http,$stateParams,$cookies,$state){
+	if($cookies.token == null) $state.go('signin');
 	$rootScope.idKapal		= $stateParams.idKapal;
 	$rootScope.idDermaga	= $stateParams.idDermaga;
 	
@@ -16,8 +16,7 @@ angular.module('app.controller', ['ui.bootstrap'])
 	$scope.boarding	= '';
 	$rootScope.judul= 'Entrance Checking';
 	
-	$scope.lookup			= function(kode) {		
-		console.log(kode);
+	$scope.lookup			= function(kode) {
 		$scope.boarding	= kode;
 		$http.get(BASE_URL+'/api/tiket/cek/'+kode)
 		.success(function(res){

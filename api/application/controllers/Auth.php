@@ -43,7 +43,9 @@ class Auth extends REST_Controller
     			$output['token']	= $this->uuid->v4(true);
                 $output['created'] 	= time();
                 $output['expired'] 	= time() + 60*60*8;
-    			
+                $output['id_pengguna']  = $user->id_pengguna;
+                $output['id_peran']     = $user->id_peran;
+                
     			#insert into keys table
     			$this->rest->db
     				->insert(

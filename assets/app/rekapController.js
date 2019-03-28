@@ -1,6 +1,6 @@
 angular.module('app.controller', ['ui.bootstrap','datatables'])
-.controller('RekapController', ['$rootScope','$scope','$http','$stateParams', function($rootScope,$scope,$http,$stateParams){
-	
+.controller('RekapController', ['$rootScope','$scope','$http','$stateParams','$cookies','$state', function($rootScope,$scope,$http,$stateParams,$cookies,$state){
+	if($cookies.token == null) $state.go('signin');
 	$rootScope.idKapal		= $stateParams.idKapal;
 	$rootScope.idDermaga	= $stateParams.idDermaga;
 	
@@ -30,6 +30,12 @@ angular.module('app.controller', ['ui.bootstrap','datatables'])
 				$scope.data = data;			
 			});
 		}
+	}
+	$scope.print	= function(){
+		var mode = 'iframe'; //popup
+        var close = mode == "popup";
+        var options = {mode: mode,popClose: close};
+        $("#printableArea").printArea(options);
 	}
 }])
 ;

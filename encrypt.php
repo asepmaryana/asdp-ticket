@@ -19,5 +19,7 @@ function encryptData($key, $plainText)
     echo base64_encode($encData);
 }
 
-encryptData('bridgethenation2018', 'dashboard1');
+// spv1 = 4cbO6yPkKbQ=
+// refund1 = uUQ2LLTYzqE=
+encryptData('bridgethenation2018', 'refund1');
 ?>

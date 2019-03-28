@@ -1,0 +1,302 @@
+<link rel="stylesheet" media="print" href="assets/styles/print.css"/>
+<script src="assets/app/jquery.PrintArea.js" type="text/JavaScript"></script>
+<div class="row small-spacing">
+	<div class="col-md-12">
+		<div class="box-content">
+			<h4 class="box-title">Booking Info</h4>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-1" class="btn btn-default"><i class="fa fa-calendar"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Tanggal Booking" ng-model="data.tgl_penjualan"/>
+					</div>
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-1" class="btn btn-default"><i class="fa fa-calendar"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Tanggal Berangkat" ng-model="data.tgl_berangkat"/>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-3" class="btn btn-default"><i class="fa fa-map-marker"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Rute" ng-model="data.rute"/>
+					</div>
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-2" class="btn btn-default"><i class="fa fa-car"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Jenis Pelayanan" ng-model="data.layanan"/>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group margin-bottom-10">
+						<div class="input-group-btn"><label for="ig-2" class="btn btn-default"><i class="fa fa-lightbulb-o"></i></label></div>
+						<!-- /.input-group-btn -->
+						<input type="text" class="form-control" placeholder="Status Pesan" ng-model="data.status_pesan"/>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<p ng-if="data.details.length == 0">Data penumpang tidak ada atau semua tiket sudah refund.</p>
+					<table class="table table-bordered" ng-if="data.details.length > 0">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th><input type="checkbox" ng-checked="isAllTiketSelected()" ng-click="selectAllTiket($event)"/></th>
+								<th>Kode Boarding</th>
+								<th>Nama</th>
+								<th>Kelamin</th>
+								<th>Usia</th>
+								<th>Alamat</th>
+								<th>No.ID</th>
+								<th>Jenis ID</th>
+								<th>No.Polisi</th>
+								<th>Golongan</th>
+								<th>Tarif</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="r in data.details">
+								<td>{{$index + 1}}</td>
+								<td><input type="checkbox" ng-checked="isTiketSelected(r)" ng-click="updateSelectedTiket($event, r)"/></td>
+								<td>{{r.kode_boarding}}</td>
+								<td>{{r.nama}}</td>
+								<td>{{r.jenis_kelamin}}</td>
+								<td>{{r.usia}}</td>
+								<td>{{r.alamat}}</td>
+								<td>{{r.no_identitas}}</td>
+								<td>{{r.jenis_identitas}}</td>
+								<td>{{r.no_polisi}}</td>
+								<td>{{r.golongan}}</td>
+								<td>{{r.tarif|number}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row small-spacing">
+	<div class="col-md-12">
+		<div class="box-content">
+			<div class="row">
+				<div class="col-sm-3 text-center" style="padding: 10">
+					<p ng-show="data.tarif != null">Total Harga Tiket :</p>
+					<h3 ng-show="data.tarif != null">Rp. {{data.tarif|number}}</h3>
+				</div>
+				<div class="col-sm-5 text-center">
+					<h3>{{booking}}</h3>
+					<img src="assets/images/ditemukan.png" ng-show="data.success == true"/> 
+					<h3 ng-show="data.success == true">{{data.message}}</h3>
+					
+					<img src="assets/images/tidak.png" ng-show="data.success == false"/> 
+					<h3 ng-show="data.success == false">{{data.message}}</h3>					
+				</div>
+				<div class="col-sm-4 text-center">
+					<input id="btnkode" type="text" class="form-control" placeholder="Kode Booking" ng-model="kode" ng-keypress="enterPressed($event)"/> <br/>
+					<button class="btn btn-sm btn-primary" type="button" ng-click="clear();">
+						<i class="fa fa-remove"></i> Clear
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row small-spacing" ng-show="mode == 'form'">
+	<div class="col-md-12">
+		<div class="box-content">
+			<h4 class="box-title">Formulir Permohonan Refund</h4>
+			<form name="formEdit" class="form-horizontal" role="form">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="nama">Jenis Identitas :</label>
+							<div class="col-sm-8">
+								<select class="form-control" ng-model="data.id_jenis_identitas" required>
+									<option value="">- Pilih -</option>
+									<option ng-repeat="p in identitass" value="{{p.id_jenis_identitas}}" ng-selected="data.id_jenis_identitas == p.id_jenis_identitas">{{p.jenis_identitas}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="nama">Nomor Identitas :</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" placeholder="" ng-model="data.nomor_identitas" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="nama">Nama Pemohon :</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" placeholder="" ng-model="data.nama_pemohon" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="nama">Nomor HP :</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" placeholder="" ng-model="data.nomor_telp"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="nama">Bank :</label>
+							<div class="col-sm-8">
+								<select class="form-control" ng-model="data.id_bank" required>
+									<option value="">- Pilih -</option>
+									<option ng-repeat="p in banks" value="{{p.id_bank}}" ng-selected="data.id_bank == p.id_bank">{{p.nama_bank}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="nama">Total Harga (100%) :</label>
+							<div class="col-sm-8">
+								<h4>Rp. {{total|number}}</h4>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="nama">Nominal Refund (75%) :</label>
+							<div class="col-sm-8">
+								<h4>Rp. {{nominal|number}}</h4>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="nama">Nomor Rekening :</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" placeholder="" ng-model="data.rekening" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="nama">Atas Nama :</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" placeholder="" ng-model="data.atas_nama" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="nama">Alasan :</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" placeholder="" ng-model="data.alasan"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="nama">&nbsp;</label>
+							<div class="col-sm-8">
+								<button class="btn btn-sm btn-danger" type="button" ng-click="save(data);" ng-disabled="isClean() || formEdit.$invalid">
+									<i class="fa fa-check"></i> Proses
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="row small-spacing" ng-show="mode == 'print'">	
+	<div class="col-sm-12 box-content" id="printableAreaStruk">
+		<div class="col-sm-12 margin-bottom-20">
+			<div class="text-center">
+				<img src="assets/images/header.png" border="0"/>
+			</div>
+		</div>
+		<div class="col-sm-12 margin-bottom-20">
+			<div class="text-center">
+				<h4 class="font-bold">
+					REFUND TIKET <br/>{{refund.rute}}
+				</h4>
+			</div>
+		</div>
+		<div class="col-sm-12 margin-bottom-20">
+			<table class="table">
+				<tbody>
+					<tr>
+						<td class="col-sm-6" style="border-right: 1px solid #ccc; border-top: 1px solid #fff;">
+							Kode Booking<br/>
+							<i>Booking Code</i><br/>
+							<strong>{{refund.kode_booking}}</strong>
+						</td>
+						<td class="col-sm-6" style="border-top: 1px solid #fff;">
+							Tanggal Refund<br/>
+							<i>Refund Date</i><br/>
+							<strong>{{refund.tgl_pengajuan|tanggal}}</strong>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-sm-6" style="border-right: 1px solid #ccc; border-top: 1px solid #fff;">
+							Tanggal Pembelian<br/>
+							<i>Purchase Date</i><br/>
+							<strong>{{refund.tgl_penjualan}}</strong>
+						</td>
+						<td class="col-sm-6" style="border-top: 1px solid #fff;">
+							Total Tarif<br/>
+							<i>Fare Total </i><br/>
+							<strong>Rp. {{refund.total|number}}</strong>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-sm-6" style="border-right: 1px solid #ccc; border-top: 1px solid #fff;">
+							Tanggal Berangkat<br/>
+							<i>Departure Date</i><br/>
+							<strong>{{refund.tgl_berangkat}}</strong>
+						</td>
+						<td class="col-sm-6" style="border-top: 1px solid #fff;">
+							Total Refund<br/>
+							<i>Total Refund </i><br/>
+							<strong>Rp. {{refund.nominal|number}}</strong>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-sm-6" style="border-right: 1px solid #ccc; border-top: 1px solid #fff;">
+							Nama<br/>
+							<i>Name</i><br/>
+							<strong>{{refund.nama_pemohon}}</strong>
+						</td>
+						<td class="col-sm-6" style="border-top: 1px solid #fff;">
+							Akun Bank<br/>
+							<i>Bank Account </i><br/>
+							<strong>{{refund.rekening}} ({{refund.nama_bank}})</strong>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-sm-6" style="border-right: 1px solid #ccc; border-top: 1px solid #fff;">
+							Nomor Identitas<br/>
+							<i>Identity Number</i><br/>
+							<strong>{{refund.nomor_identitas}}</strong>
+						</td>
+						<td class="col-sm-6" style="border-top: 1px solid #fff;">
+							Nama Akun<br/>
+							<i>Account Name</i><br/>
+							<strong>{{refund.atas_nama}}</strong>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-sm-6" style="border-right: 1px solid #ccc; border-top: 1px solid #fff;">
+							Jenis Layanan<br/>
+							<i>Type Of Service</i><br/>
+							<strong>{{refund.layanan}}</strong>
+						</td>
+						<td class="col-sm-6" style="border-top: 1px solid #fff;">
+							Perkiraan Refund<br/>
+							<i>Refund Estimated</i><br/>
+							<strong>1 Bulan Setelah Pengajuan</strong>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="col-sm-12">
+		<button class="btn btn-sm btn-primary" type="button" ng-click="print()">
+			<i class="fa fa-print"></i> Print
+		</button>
+		<button class="btn btn-sm btn-primary" type="button" ng-click="finish()">
+			<i class="fa fa-stop"></i> Finish
+		</button>
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function () {
+	$("#body").removeClass("bglogin");
+	$("#btnkode").focus();
+});
+</script>

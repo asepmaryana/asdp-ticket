@@ -1,0 +1,128 @@
+<link rel="stylesheet" media="print" href="assets/styles/print.css"/>
+<script src="assets/app/jquery.PrintArea.js" type="text/JavaScript"></script>
+<div class="row small-spacing">
+	<div class="col-md-12">
+		<div class="box-content">
+			<div class="row">
+				<div class="col-sm-12">
+					<form name="form" class="form-inline" role="form">
+						<label class="control-label"> Kode Booking : </label>
+						<input type="text" class="form-control" ng-model="kode" id="btnkode" ng-keypress="enterPressed($event)"/>
+						<div class="btn-group">
+							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pilih <span class="caret"></span></button> 
+							<ul class="dropdown-menu">
+								<li><a ng-click="lookup(kode)"><i class="fa fa-refresh"></i> View</a></li>
+								<li><a ng-click="print()"><i class="fa fa-print"></i> Print</a></li>
+							</ul>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row small-spacing" ng-show="mode == 'print'">
+	<div class="col-md-12" id="printTiketRefund">
+		<div class="box-content">
+			<div class="row">
+				<div class="col-sm-12 margin-bottom-20">
+					<div class="text-center">
+						<img src="assets/images/header.png" border="0"/>
+					</div>
+				</div>
+				<div class="col-sm-12 margin-bottom-20">
+					<div class="text-center">
+						<h4 class="font-bold">
+							REFUND TIKET <br/>{{refund.rute}}
+						</h4>
+					</div>
+				</div>
+				<div class="col-sm-12">
+					<table class="table">
+						<tbody>
+							<tr>
+								<td class="col-sm-6" style="border-right: 1px solid #ccc; border-top: 1px solid #fff;">
+									Kode Booking<br/>
+									<i>Booking Code</i><br/>
+									<strong>{{refund.kode_booking}}</strong>
+								</td>
+								<td class="col-sm-6" style="border-top: 1px solid #fff;">
+									Tanggal Refund<br/>
+									<i>Refund Date</i><br/>
+									<strong>{{refund.tgl_pengajuan|tanggal}}</strong>
+								</td>
+							</tr>
+							<tr>
+								<td class="col-sm-6" style="border-right: 1px solid #ccc; border-top: 1px solid #fff;">
+									Tanggal Pembelian<br/>
+									<i>Purchase Date</i><br/>
+									<strong>{{refund.tgl_penjualan}}</strong>
+								</td>
+								<td class="col-sm-6" style="border-top: 1px solid #fff;">
+									Total Tarif<br/>
+									<i>Fare Total </i><br/>
+									<strong>Rp. {{refund.total|number}}</strong>
+								</td>
+							</tr>
+							<tr>
+								<td class="col-sm-6" style="border-right: 1px solid #ccc; border-top: 1px solid #fff;">
+									Tanggal Berangkat<br/>
+									<i>Departure Date</i><br/>
+									<strong>{{refund.tgl_berangkat}}</strong>
+								</td>
+								<td class="col-sm-6" style="border-top: 1px solid #fff;">
+									Total Refund<br/>
+									<i>Total Refund </i><br/>
+									<strong>Rp. {{refund.nominal|number}}</strong>
+								</td>
+							</tr>
+							<tr>
+								<td class="col-sm-6" style="border-right: 1px solid #ccc; border-top: 1px solid #fff;">
+									Nama<br/>
+									<i>Name</i><br/>
+									<strong>{{refund.nama_pemohon}}</strong>
+								</td>
+								<td class="col-sm-6" style="border-top: 1px solid #fff;">
+									Akun Bank<br/>
+									<i>Bank Account </i><br/>
+									<strong>{{refund.rekening}} ({{refund.nama_bank}})</strong>
+								</td>
+							</tr>
+							<tr>
+								<td class="col-sm-6" style="border-right: 1px solid #ccc; border-top: 1px solid #fff;">
+									Nomor Identitas<br/>
+									<i>Identity Number</i><br/>
+									<strong>{{refund.nomor_identitas}}</strong>
+								</td>
+								<td class="col-sm-6" style="border-top: 1px solid #fff;">
+									Nama Akun<br/>
+									<i>Account Name</i><br/>
+									<strong>{{refund.atas_nama}}</strong>
+								</td>
+							</tr>
+							<tr>
+								<td class="col-sm-6" style="border-right: 1px solid #ccc; border-top: 1px solid #fff;">
+									Jenis Layanan<br/>
+									<i>Type Of Service</i><br/>
+									<strong>{{refund.layanan}}</strong>
+								</td>
+								<td class="col-sm-6" style="border-top: 1px solid #fff;">
+									Perkiraan Refund<br/>
+									<i>Refund Estimated</i><br/>
+									<strong>1 Bulan Setelah Pengajuan</strong>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function () {
+	$("#body").removeClass("bglogin");
+	$("#btnkode").focus();
+});
+</script>

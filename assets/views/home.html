@@ -26,15 +26,27 @@
 	<div class="content">
 		<div class="navigation">
 			<ul class="menu js__accordion">
-				<li>
+				<!-- id_peran = 9 (Manifest) -->
+				<li ng-show="id_peran == '7' || id_peran == '1' || id_peran == '2' || id_peran == '3'">
 					<a class="waves-effect" href="#/app/entrance/{{idKapal}}/{{idDermaga}}"><i class="menu-icon fa fa-sign-in"></i><span>Entrance</span></a>
 				</li>
-				<li>
-					<a class="waves-effect parent-item js__control"><i class="menu-icon fa fa-flag"></i><span>Laporan</span><span class="menu-arrow fa fa-angle-down"></span></a>
+				<li ng-show="id_peran == '7' || id_peran == '1' || id_peran == '2' || id_peran == '3'">
+					<a class="waves-effect parent-item js__control"><i class="menu-icon fa fa-files-o"></i><span>Laporan</span><span class="menu-arrow fa fa-angle-down"></span></a>
 					<ul class="sub-menu js__content">
 						<li><a href="#/app/penumpang/{{idKapal}}/{{idDermaga}}">Penumpang</a></li>
 						<li><a href="#/app/kendaraan/{{idKapal}}/{{idDermaga}}">Kendaraan</a></li>
 						<li><a href="#/app/rekap/{{idKapal}}/{{idDermaga}}">Rekapitulasi</a></li>
+					</ul>
+					<!-- /.sub-menu js__content -->
+				</li>
+				<!-- id_peran = 10 (Refund) -->
+				<li ng-show="id_peran == '10' || id_peran == '1' || id_peran == '2' || id_peran == '3'">
+					<a class="waves-effect parent-item js__control"><i class="menu-icon fa fa-retweet"></i><span>Refund</span><span class="menu-arrow fa fa-angle-down"></span></a>
+					<ul class="sub-menu js__content">
+						<li><a href="#/app/refund/submission">Pengajuan Refund</a></li>
+						<li><a href="#/app/refund/list">Daftar Refund</a></li>
+						<li><a href="#/app/refund/print">Cetak Refund</a></li>
+						<!-- <li><a href="#/app/refund/process">Proses Refund</a></li> -->
 					</ul>
 					<!-- /.sub-menu js__content -->
 				</li>

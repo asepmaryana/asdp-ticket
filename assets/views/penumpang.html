@@ -1,3 +1,5 @@
+<link rel="stylesheet" media="print" href="assets/styles/print.css"/>
+<script src="assets/app/jquery.PrintArea.js" type="text/JavaScript"></script>
 <div class="row small-spacing">
 	<div class="col-md-12">
 		<div class="box-content">
@@ -12,18 +14,37 @@
 							<option value="sudah">Sudah Masuk Kapal</option>
 							<option value="belum">Belum Masuk Kapal</option>
 						</select>
-						<button class="btn btn-primary" ng-click="view(crit, '')" ng-disabled="form.$invalid"><i class="fa fa-refresh"></i> Tampilkan</button>
-						<button class="btn btn-primary" ng-click="view(crit, 'xls')" ng-disabled="form.$invalid"><i class="fa fa-file-excel-o"></i> Excel</button>
-						<button class="btn btn-primary" ng-click="view(crit, 'pdf')" ng-disabled="form.$invalid"><i class="fa fa-file-pdf-o"></i> Pdf</button>
+						<div class="btn-group">
+							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pilih <span class="caret"></span></button> 
+							<ul class="dropdown-menu">
+								<li><a ng-click="view(crit, '')"><i class="fa fa-refresh"></i> View</a></li>
+								<li><a ng-click="print()"><i class="fa fa-print"></i> Print</a></li>
+								<li><a ng-click="view(crit, 'xls')"><i class="fa fa-file-excel-o"></i> Excel</a></li>
+								<li><a ng-click="view(crit, 'pdf')"><i class="fa fa-file-pdf-o"></i> Pdf</a></li>
+							</ul>
+						</div>
 					</form>					
 				</div>
 			</div>
-			
 			<div class="row" style="padding-top: 10px">
+				<div class="alert alert-info" ng-show="mode == ''">Pilih tanggal dan status !</div>
+				<div class="alert alert-info" ng-show="rows.length == 0 && mode != ''">Data penumpang belum ada !</div>
+			</div>
+			<div class="row" style="padding-top: 10px" id="printablePenumpang">
+				<div class="col-sm-12 margin-bottom-20" ng-show="mode == 'print'">
+					<div class="text-center">
+						<img src="assets/images/header.png" border="0"/>
+					</div>
+				</div>
+				<div class="col-sm-12 margin-bottom-20" ng-show="mode == 'print'">
+					<div class="text-center">
+						<h4 class="font-bold">
+							DATA PENUMPANG
+						</h4>
+					</div>
+				</div>
 				<div class="col-sm-12">
-					<div class="alert alert-info" ng-show="mode == ''">Pilih tanggal dan status !</div>
-					<div class="alert alert-info" ng-show="rows.length == 0 && mode != ''">Data penumpang belum ada !</div>
-					<table datatable="ng" class="table table-striped" ng-if="rows.length > 0">
+					<table class="table table-striped" ng-if="rows.length > 0">
 						<thead>
 							<tr>
 								<th>No.</th>

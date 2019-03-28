@@ -1,6 +1,6 @@
 angular.module('app.controller', ['ui.bootstrap','datatables'])
-.controller('PenumpangController', ['$rootScope','$scope','$http','$stateParams', function($rootScope,$scope,$http,$stateParams){
-	
+.controller('PenumpangController', ['$rootScope','$scope','$http','$stateParams','$cookies','$state', function($rootScope,$scope,$http,$stateParams,$cookies,$state){
+	if($cookies.token == null) $state.go('signin');
 	$rootScope.idKapal		= $stateParams.idKapal;
 	$rootScope.idDermaga	= $stateParams.idDermaga;
 	
@@ -20,7 +20,6 @@ angular.module('app.controller', ['ui.bootstrap','datatables'])
 	$scope.rows		= [];
 	$scope.mode		= '';
 	$scope.buildUrl	= function(crit) {
-		console.log(BASE_URL+'/api/tiket/lists/'+id_layanan+'/'+id_kapal+'/'+id_dermaga+'/'+crit.tanggal+'/'+crit.status);
 		return BASE_URL+'/api/tiket/lists/'+id_layanan+'/'+id_kapal+'/'+id_dermaga+'/'+crit.tanggal+'/'+crit.status;
 	}
 	$scope.view		= function(crit, doc) {
@@ -31,6 +30,13 @@ angular.module('app.controller', ['ui.bootstrap','datatables'])
 			});
 		}
 		else window.open($scope.buildUrl(crit)+'/'+doc);
+	}
+	$scope.print	= function(){
+		$scope.mode		= 'print';
+		var mode = 'iframe'; //popup
+        var close = mode == "popup";
+        var options = {mode: mode,popClose: close};
+        $("#printablePenumpang").printArea(options);
 	}
 }])
 ;

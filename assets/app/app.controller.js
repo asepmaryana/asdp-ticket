@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('app.controller', ['app.constant', 'ngCookies'])
-.controller('WelcomeController', ['$rootScope','$scope', '$state', '$http', function ($rootScope, $scope, $state, $http){
+.controller('WelcomeController', ['$rootScope','$scope','$state','$http', function ($rootScope,$scope,$state,$http){
 	
 }])
-.controller('SignInController', ['$rootScope','$scope', '$state', '$http', '$cookies', function ($rootScope, $scope, $state, $http, $cookies){
+.controller('SignInController', ['$rootScope','$scope','$state','$http','$cookies','$location', function ($rootScope,$scope,$state,$http,$cookies,$location){
 	if($cookies.token != null) $state.go('select');
 	$scope.data	= {username:'', password:'', remember:'0'};
 	$scope.enterPressed = function (keyEvent) {
@@ -19,8 +19,10 @@ angular.module('app.controller', ['app.constant', 'ngCookies'])
 			$http.post(BASE_URL + '/api/auth/login', data)
 			.success(function(res){
 				$cookies.token = res.token;
+				$rootScope.id_peran = res.id_peran;
 				$http.defaults.headers.common['X-Authorization'] = res.token;
-				$state.go('select');
+				if(res.id_peran == '10') $location.path('/app/refund/submission');
+				else $state.go('select');
 			})
 			.error(function(res){
 				swal('Exception', res.message);
@@ -28,7 +30,7 @@ angular.module('app.controller', ['app.constant', 'ngCookies'])
 		}
 	};
 }])
-.controller('ResetController', ['$rootScope','$scope', '$location', '$http', '$cookies', function ($rootScope, $scope, $location, $http, $cookies){
+.controller('ResetController', ['$rootScope','$scope','$location','$http','$cookies','$state', function ($rootScope,$scope,$location,$http,$cookies,$state){
 	if($cookies.token != null) $state.go('select');
 	$scope.data	= {username:''};
 	$scope.enterPressed = function (keyEvent) {
@@ -49,9 +51,7 @@ angular.module('app.controller', ['app.constant', 'ngCookies'])
 	}
 }])
 .controller('SelectController', ['$rootScope','$scope','$location','$http','$cookies','$state', function ($rootScope, $scope, $location, $http, $cookies,$state){
-	if($cookies.token != null) $state.go('select');
-	else $state.go('signin');
-	
+
 	$scope.data		= {id_kapal:'',id_dermaga:''};
 	$scope.kapals	= [];
 	$scope.dermagas	= [];
@@ -65,13 +65,12 @@ angular.module('app.controller', ['app.constant', 'ngCookies'])
 		$location.path('/app/entrance/'+data.id_kapal+'/'+data.id_dermaga);
 	}
 }])
-.controller('HomeController', ['$rootScope','$scope','$http','$interval','$timeout','$location','$cookies','EVENTS', function ($rootScope,$scope,$http,$interval,$timeout,$location,$cookies,EVENTS) {
-	
+.controller('HomeController', ['$rootScope','$scope','$http','$interval','$timeout','$location','$cookies','$state','EVENTS', function ($rootScope,$scope,$http,$interval,$timeout,$location,$cookies,$state,EVENTS) {
+	if($cookies.token == null) $state.go('signin');
 	$rootScope.kapal	= '';
 	$rootScope.dermaga	= '';
 	$rootScope.judul	= '';
 	
-	if($cookies.token == null) $state.go('signin');
 	$rootScope.user = {};
 	$http.get(BASE_URL+'/api/auth/info').success(function(data){
 		$rootScope.user = data;

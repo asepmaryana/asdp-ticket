@@ -122,6 +122,66 @@ angular.module('app', ['ui.router', 'oc.lazyLoad', 'ngAnimate', 'ngCookies', 'ui
 				}]
         	}
         })
+        .state('app.refundSubmission', {
+        	url: '/refund/submission',
+        	parent: 'app',
+			views:{
+				'page':{
+					templateUrl: 'assets/views/refundSubmission.html',
+					controller: 'RefundSubmissionController',
+				}
+			},
+        	resolve: {
+        		loadModule: ['$ocLazyLoad', function($ocLazyLoad){
+					return $ocLazyLoad.load(['assets/app/refundSubmissionController.js']);
+				}]
+        	}
+        })
+        .state('app.refundList', {
+        	url: '/refund/list',
+        	parent: 'app',
+			views:{
+				'page':{
+					templateUrl: 'assets/views/refundList.html',
+					controller: 'RefundListController',
+				}
+			},
+        	resolve: {
+        		loadModule: ['$ocLazyLoad', function($ocLazyLoad){
+					return $ocLazyLoad.load(['assets/app/refundListController.js']);
+				}]
+        	}
+        })
+        .state('app.refundPrint', {
+        	url: '/refund/print',
+        	parent: 'app',
+			views:{
+				'page':{
+					templateUrl: 'assets/views/refundPrint.html',
+					controller: 'RefundPrintController',
+				}
+			},
+        	resolve: {
+        		loadModule: ['$ocLazyLoad', function($ocLazyLoad){
+					return $ocLazyLoad.load(['assets/app/refundPrintController.js']);
+				}]
+        	}
+        })
+        .state('app.refundProcess', {
+        	url: '/refund/process',
+        	parent: 'app',
+			views:{
+				'page':{
+					templateUrl: 'assets/views/refundProcess.html',
+					controller: 'RefundProcessController',
+				}
+			},
+        	resolve: {
+        		loadModule: ['$ocLazyLoad', function($ocLazyLoad){
+					return $ocLazyLoad.load(['assets/app/refundProcessController.js']);
+				}]
+        	}
+        })
         ;
     
     $httpProvider.interceptors.push(['$rootScope', '$q', '$cookies', 'EVENTS', function ($rootScope, $q, $cookies, EVENTS) {

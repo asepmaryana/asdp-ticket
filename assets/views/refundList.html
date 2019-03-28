@@ -1,0 +1,89 @@
+<link rel="stylesheet" media="print" href="assets/styles/print.css"/>
+<script src="assets/app/jquery.PrintArea.js" type="text/JavaScript"></script>
+<div class="row small-spacing">
+	<div class="col-md-12">
+		<div class="box-content">
+			<div class="row">
+				<div class="col-sm-12">
+					<form name="form" class="form-inline" role="form">
+						<label class="control-label"> Kode Booking : </label>
+						<input type="text" class="form-control" ng-model="crit.kode_booking"/>
+						<label class="control-label"> Tanggal : </label>
+						<input type="text" class="form-control" ng-model="crit.tanggal" id="tanggal" required/>
+						<label class="control-label"> Status : </label>
+						<select class="form-control" ng-model="crit.id_status_refund">
+							<option value="">- Semua -</option>
+							<option ng-repeat="p in status" value="{{p.id_status_refund}}" ng-selected="crit.id_status_refund == p.id_status_refund">{{p.status_refund}}</option>
+						</select>
+						<div class="btn-group">
+							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pilih <span class="caret"></span></button> 
+							<ul class="dropdown-menu">
+								<li><a ng-click="view(crit, '')"><i class="fa fa-refresh"></i> View</a></li>
+								<li><a ng-click="print()"><i class="fa fa-print"></i> Print</a></li>
+								<li><a ng-click="view(crit, 'xls')"><i class="fa fa-file-excel-o"></i> Excel</a></li>
+								<li><a ng-click="view(crit, 'pdf')"><i class="fa fa-file-pdf-o"></i> Pdf</a></li>
+							</ul>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row" style="padding-top: 10px">
+				<div class="alert alert-info" ng-show="mode == ''">Pilih tanggal dan status !</div>
+				<div class="alert alert-info" ng-show="rows.length == 0 && mode != ''">Data refund belum ada !</div>
+			</div>
+			<div class="row" style="padding-top: 10px" id="printableTiketRefund">
+				<div class="col-sm-12 margin-bottom-20" ng-show="mode == 'print'">
+					<div class="text-center">
+						<img src="assets/images/header.png" border="0"/>
+					</div>
+				</div>
+				<div class="col-sm-12 margin-bottom-20" ng-show="mode == 'print'">
+					<div class="text-center">
+						<h4 class="font-bold">
+							DAFTAR TIKET REFUND
+						</h4>
+					</div>
+				</div>
+				<div class="col-sm-12">
+					<table class="table table-striped" ng-if="rows.length > 0">
+						<thead>
+							<tr>
+								<th>No.</th>
+								<th>Kode Booking</th>
+								<th>Rute</th>
+								<th>Tgl Berangkat</th>
+								<th>Nama</th>
+								<th>Kelamin</th>
+								<th>Alamat</th>
+								<th>Status</th>
+							</tr>
+						</thead>						
+						<tbody>
+							<tr ng-repeat="r in rows">
+								<td>{{$index + 1}}</td>
+								<td>{{r.kode_booking}}</td>
+								<td>{{r.asal}} - {{r.tujuan}}</td>
+								<td>{{r.tgl_berangkat|tanggal}}</td>
+								<td>{{r.nama}}</td>
+								<td>{{r.jenis_kelamin}}</td>
+								<td>{{r.alamat}}</td>
+								<td>{{r.status_refund}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	var datePickConfig	= {
+		autoclose: true,
+		todayHighlight: true,
+		format: 'yyyy-mm-dd'
+	};
+	jQuery('#tanggal').datepicker(datePickConfig);
+});
+</script>

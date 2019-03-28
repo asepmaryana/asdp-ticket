@@ -1,3 +1,5 @@
+<link rel="stylesheet" media="print" href="assets/styles/print.css"/>
+<script src="assets/app/jquery.PrintArea.js" type="text/JavaScript"></script>
 <div class="row small-spacing">
 	<div class="col-md-12">
 		<div class="box-content">
@@ -8,13 +10,24 @@
 						<input type="text" class="form-control" ng-model="crit.tanggal" id="tanggal" required/>
 						<label class="control-label"> Jam : </label>
 						<input type="text" class="form-control" ng-model="crit.jam" id="jam" required/>
-						<button class="btn btn-primary" ng-click="view(crit, '')" ng-disabled="form.$invalid"><i class="fa fa-refresh"></i> View</button>
-						<button class="btn btn-primary" ng-click="view(crit, 'pdf')" ng-disabled="form.$invalid"><i class="fa fa-file-pdf-o"></i> Export</button>
+						<div class="btn-group">
+							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pilih <span class="caret"></span></button> 
+							<ul class="dropdown-menu">
+								<li><a ng-click="view(crit, '')"><i class="fa fa-refresh"></i> View</a></li>
+								<li><a ng-click="print()"><i class="fa fa-print"></i> Print</a></li>
+								<li><a ng-click="view(crit, 'pdf')"><i class="fa fa-file-pdf-o"></i> Pdf</a></li>
+							</ul>
+						</div>
 					</form>					
 				</div>
 			</div>
-			<div class="row" style="padding-top: 10px">
-				<div class="alert alert-info" ng-show="mode == ''">Pilih tanggal dan jam !</div>
+			<div class="alert alert-info" ng-show="mode == ''">Pilih tanggal dan jam !</div>
+			<div class="row printableArea" style="padding-top: 10px" id="printableArea">
+				<div class="col-sm-12 margin-bottom-20" ng-if="mode != ''">
+					<div class="text-center">
+						<img src="assets/images/header.png" border="0"/>
+					</div>
+				</div>
 				<div class="col-sm-12 margin-bottom-20" ng-if="mode != ''">
 					<div class="text-center">
 						<h4 class="font-bold">
@@ -59,35 +72,35 @@
 									
 									<div class="row margin-bottom-10">
 										<div class="col-sm-1 text-right">1. </div>
-										<div class="col-sm-11">Dewasa</div>
+										<div class="col-sm-10">Dewasa</div>
 									</div>
 									
 									<div class="row margin-bottom-10">
 										<div class="col-sm-1 text-right">&nbsp;</div>
 										<div class="col-sm-5">a. Laki-laki</div>
-										<div class="col-sm-2">: </div>
-										<div class="col-sm-3 text-right"> {{data.pen.dewasa.laki|number}} Orang </div>
+										<div class="col-sm-1">: </div>
+										<div class="col-sm-4 text-right"> {{data.pen.dewasa.laki|number}} Orang </div>
 									</div>
 									
 									<div class="row margin-bottom-10">
 										<div class="col-sm-1 text-right">&nbsp;</div>
 										<div class="col-sm-5">b. Perempuan</div>
-										<div class="col-sm-2">: </div>
-										<div class="col-sm-3 text-right">{{data.pen.dewasa.perempuan|number}} Orang </div>
+										<div class="col-sm-1">: </div>
+										<div class="col-sm-4 text-right">{{data.pen.dewasa.perempuan|number}} Orang </div>
 									</div>
 									
 									<div class="row margin-bottom-10">
 										<div class="col-sm-1 text-right">2. </div>
 										<div class="col-sm-5">Anak</div>
-										<div class="col-sm-2">: </div>
-										<div class="col-sm-3 text-right">{{data.pen.anak|number}} Orang </div>
+										<div class="col-sm-1">: </div>
+										<div class="col-sm-4 text-right">{{data.pen.anak|number}} Orang </div>
 									</div>
 									
 									<div class="row">
 										<div class="col-sm-1 text-right">3. </div>
 										<div class="col-sm-5">Balita</div>
-										<div class="col-sm-2">: </div>
-										<div class="col-sm-3 text-right">{{data.pen.balita|number}} Orang </div>
+										<div class="col-sm-1">: </div>
+										<div class="col-sm-4 text-right">{{data.pen.balita|number}} Orang </div>
 									</div>
 									
 								</td>
@@ -195,8 +208,14 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="col-sm-6">
-									&nbsp;
+								<td class="col-sm-6 text-center" style="padding: 20px;">
+									<br/>
+									<br/>
+									<br/>
+									<br/>
+									<br/>
+									<br/>
+									<br/>
 								</td>
 								<td class="col-sm-6 text-center" style="padding: 20px;">
 									Petugas Operator Kapal <br/>
